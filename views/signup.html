@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        header{
+            margin-bottom: 1em;
+            padding: 0;
+        }
+        
+        body{
+            font-family: sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .heading{
+            font-weight: bold;
+            text-align: center;
+            background-color: #25D366;
+            padding: 1em;
+            margin: 0;
+        }
+        
+        
+        .form-class{
+            width: 30vw;
+            margin: auto;
+            padding: 2em;
+            border-radius: 1em;
+            border: 3px solid #128C7E;
+        }
+        
+        .form-input{
+            width: 100%;
+            padding: 0.3em;
+            margin-top: 0.4em;
+            margin-bottom: 0.4em;
+            border-radius: 5px;
+            border: 2px solid silver;
+        }
+        
+        .form-input:focus{
+            outline: none;
+            border: 2px solid #25D366;
+        }
+        
+        .submitBtn{
+            margin-top: 0.3em;
+            padding: 0.3em;
+            width: 30%;
+            background-color: #128C7E;
+            border-radius: 6px;
+        }
+        .submitBtn:hover{
+            background-color: #075E54;
+        }
+        
+        .signUpInfo{
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+    <title>Sign Up Page</title>
+</head>
+
+<body class="body-class">
+    <header>
+        <h1 class="heading">SIGN UP Page</h1>
+    </header>
+    <div class="form-div">
+        <form class="form-class" action="post">
+            <label for="username">Username</label><br>
+            <input id="username" class="form-input" type="text"><br>
+            <label for="email">Email</label><br>
+            <input id="email" class="form-input" type="email"><br>
+            <label for="phoneNo">Phone Number</label><br>
+            <input id="phoneNo" class="form-input" type="text"><br>
+            <label for="password">Password</label><br>
+            <input id="password" class="form-input" type="password"><br>
+            <label for="cfrmPassword">Confirm Password</label><br>
+            <input id="cfrmPassword" class="form-input" type="password"><br>
+            <button type="submit" class="submitBtn">Sign Up</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
