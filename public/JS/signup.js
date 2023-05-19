@@ -33,7 +33,7 @@ async function subitForm (e){
             // psting the obj to database
             let response = await axios.post('http://localhost:3000/user/signup',obj);
             if(response.data === false){
-                signUpInfo.innerHTML = '<p>User with this email already exists</p>'
+                signUpInfo.innerHTML = '<p>User already exists, Please Login</p>'
             }
             else{
                 signUpInfo.innerHTML = '<p>Signed in sucessfully</p>'
