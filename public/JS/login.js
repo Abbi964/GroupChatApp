@@ -21,7 +21,17 @@ async function submitForm (e){
                 password : password.value,
             }
             // making a post request 
-            let response = await axios.post('http://localhost:3000/user/login',obj)
+            let response = await axios.post('http://localhost:3000/user/login',obj);
+            console.log(response)
+            // alerting the msg recieved
+            window.alert(response.data.msg)
+            // logging in the user
+            if(response.data.success){
+                // saving JWT in local storage
+                localStorage.setItem('token',response.data.token)
+                // redirecting to main page
+                window.location.href = "/main"
+            }
         }
         catch(err){
             console.log(err)
