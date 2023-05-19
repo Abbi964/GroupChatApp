@@ -12,7 +12,7 @@ body{
 .heading{
     font-weight: bold;
     text-align: center;
-    background-color: rgb(93, 244, 176);
+    background-color: #25D366;
     padding: 1em;
     margin: 0;
 }
@@ -23,7 +23,7 @@ body{
     margin: auto;
     padding: 2em;
     border-radius: 1em;
-    border: 3px solid #4fb386;
+    border: 3px solid #128C7E;
 }
 
 .prompt{
@@ -43,18 +43,18 @@ body{
 
 .form-input:focus{
     outline: none;
-    border: 2px solid rgb(93, 244, 176);
+    border: 2px solid #25D366;
 }
 
 .submitBtn{
     margin-top: 0.3em;
     padding: 0.3em;
     width: 30%;
-    background-color: rgb(93, 244, 176);
+    background-color: #128C7E;
     border-radius: 6px;
 }
 .submitBtn:hover{
-    background-color: rgb(61, 158, 114);
+    background-color: #075E54;
 }
 
 .signUpInfo{
