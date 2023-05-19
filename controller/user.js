@@ -42,3 +42,8 @@ exports.postSignupPage = async(req,res,next)=>{
         console.log(err)
     }
 }
+
+
+exports.getLoginPage = (req,res,next)=>{
+    res.sendFile(path.join(__dirname,'..','views','login.html'))
+}

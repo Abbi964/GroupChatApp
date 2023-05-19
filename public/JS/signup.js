@@ -7,9 +7,9 @@ const cnfrmpassword  = document.getElementById('cnfrmpassword');
 const promptDiv = document.querySelector('.prompt');
 const signUpInfo = document.querySelector('.signUpInfo')
 
-form.addEventListener('submit',subitForm);
+form.addEventListener('submit',submitForm);
 
-async function subitForm (e){
+async function submitForm (e){
     e.preventDefault()
     if(username.value === '' || email.value === '', phoneNo.value === '' || password.value === '' || cnfrmpassword.value === ''){
         // if not all fields are filled
