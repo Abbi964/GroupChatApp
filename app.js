@@ -11,7 +11,8 @@ const app = express();
 const sequelize = require('./util/database')
 
 //adding routes
-const userRoutes = require('./routes/user')
+const userRoutes = require('./routes/user');
+const chatappRoutes = require('./routes/chatapp');
 
 // making public folder static
 app.use(express.static(path.join(__dirname,'public')))
@@ -26,6 +27,7 @@ app.get('/',(req,res,next)=>{
 
 // Routing requests
 app.use('/user',userRoutes);
+app.use('/chatapp',chatappRoutes);
 
 
 

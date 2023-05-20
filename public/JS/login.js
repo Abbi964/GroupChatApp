@@ -22,7 +22,6 @@ async function submitForm (e){
             }
             // making a post request 
             let response = await axios.post('http://localhost:3000/user/login',obj);
-            console.log(response)
             // alerting the msg recieved
             window.alert(response.data.msg)
             // logging in the user
@@ -30,7 +29,7 @@ async function submitForm (e){
                 // saving JWT in local storage
                 localStorage.setItem('token',response.data.token)
                 // redirecting to main page
-                window.location.href = "/main"
+                window.location.href = "/chatapp/main"
             }
         }
         catch(err){
