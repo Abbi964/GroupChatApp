@@ -76,3 +76,11 @@ function makeLi(name,msg,createdAt){
     li.innerText = `${name} (${createdAt})  -    ${msg}`;
     return li
 }
+
+// continuously pulling msg from DB every 1 sec
+setInterval(()=>{
+    // first clearing the chat Ul
+    chatUl.innerHTML = ''
+    // now getting all the messages from DB
+    loadMsg()
+},8000)
