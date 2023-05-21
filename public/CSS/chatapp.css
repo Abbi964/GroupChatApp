@@ -17,6 +17,14 @@ header{
     background-color: #25D366;
 }
 
+.success{
+    color: green;
+}
+
+.failure{
+    color: red;
+}
+
 footer{
     margin-top: 1em;
     padding-top: 8px;

@@ -10,6 +10,10 @@ const app = express();
 
 const sequelize = require('./util/database')
 
+// importing models
+const User = require('./model/user');
+const Message = require('./model/message');
+
 //adding routes
 const userRoutes = require('./routes/user');
 const chatappRoutes = require('./routes/chatapp');
@@ -29,6 +33,9 @@ app.get('/',(req,res,next)=>{
 app.use('/user',userRoutes);
 app.use('/chatapp',chatappRoutes);
 
+//Defining Relations between models
+User.hasMany(Message);
+Message.belongsTo(User)
 
 
 // starting server on port 3000
