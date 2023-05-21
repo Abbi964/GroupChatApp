@@ -39,16 +39,36 @@ async function sendMessage (e){
     }
 }
 
-// Loading messages from DB when page is refreshed
+// Loading messages from DB and local storage when page gets refreshed
 window.addEventListener('DOMContentLoaded',loadMsg);
 
 async function loadMsg(e){
     try{
-        let response = await axios.get('http://localhost:3000/chatapp/getMsg');
+        // getting old messages from local storage
+        let oldMsgArray = JSON.parse(localStorage.getItem('oldMsgArray'));
+        let lastMsgId;
+
+        // cheching if there is no old msg array in localstorage (can happen for newly signup)
+        if(oldMsgArray === null){
+            oldMsgArray = [];
+            lastMsgId = 0;
+        }
+        else{
+            // Also finding out id of last msg
+            lastMsgId = oldMsgArray[oldMsgArray.length - 1].id;
+        }
+
+        // now getting new messages from DB
+        let response = await axios.get(`http://localhost:3000/chatapp/getNewMsg?lastMsgId=${lastMsgId}`);
     
         if(response.data.success){
+            //combining old and new message arrays
+            let msgArray = [...oldMsgArray,...response.data.newMsgArray]
+            // storing this msgArray in localstorage but also only storing anly 10 msg in localstorage
+            storeInLocalStorage(msgArray)
+
             // showing msg on display
-            response.data.msgArray.forEach((msgObj)=>{
+            msgArray.forEach((msgObj)=>{
                 // making an li
                 let li = makeLi(msgObj.username,msgObj.message,msgObj.createdAt);
                 // appending li to ul
@@ -77,7 +97,18 @@ function makeLi(name,msg,createdAt){
     return li
 }
 
-// continuously pulling msg from DB every 1 sec
+function storeInLocalStorage(msgArray){
+    let slicedArray;
+    if(msgArray.length <10){
+        slicedArray = msgArray
+    }
+    else{
+        slicedArray = msgArray.slice(msgArray.length - 10)
+    }
+    localStorage.setItem('oldMsgArray',JSON.stringify(slicedArray))
+}
+
+// continuously pulling messages
 setInterval(()=>{
     // first clearing the chat Ul
     chatUl.innerHTML = ''

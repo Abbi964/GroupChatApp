@@ -8,6 +8,6 @@ router.get('/main',chatappController.getMainPage);
 
 router.post('/sendMsg',userAuthentication.authenticate,chatappController.sendMsg);
 
-router.get('/getMsg',chatappController.getMsg)
+router.get('/getNewMsg',chatappController.getNewMsg)
 
 module.exports = router

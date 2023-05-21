@@ -4,6 +4,7 @@ const fs = require('fs');
 const User = require('../model/user');
 const Message = require('../model/message');
 const sequelize = require('../util/database');
+const { Op } = require('sequelize');
 const { json } = require('body-parser');
 
 exports.getMainPage = (req,res,next)=>{
@@ -20,6 +21,9 @@ exports.sendMsg = async(req,res,next)=>{
             message : msg,
             userId : user.id,
             username : user.name,
+        },
+        {
+            transaction : t,
         })
         await t.commit()
         res.json({msg : 'message Sent', success : true})
@@ -33,19 +37,28 @@ exports.sendMsg = async(req,res,next)=>{
 }
 
 
-exports.getMsg = async(req,res,next)=>{
-    let t = sequelize.transaction()
+exports.getNewMsg = async(req,res,next)=>{
+    const t = await sequelize.transaction()
     try{
-        // getting all the messages from DB
-        let msgArray = await Message.findAll({
-            order : [
-                ['createdAt','ASC']
-            ]
+        // getting all the new messages from DB
+        // let newMsgArray = await Message.findAll({
+        //     offset : +req.query.lastMsgId,
+        //     transaction : t
+        // });
+        let newMsgArray = await Message.findAll({
+            where : {
+                id : {
+                    [Op.gt] : +req.query.lastMsgId
+                }
+            },
+            transaction : t
         })
-        res.json({msgArray : msgArray, success : true})
+        await t.commit()
+        res.json({newMsgArray : newMsgArray, success : true})
     }
     catch(err){
         console.log(err);
+        await t.rollback()
         res.json({msg : 'something went wrong', success : false})
     }
 }
