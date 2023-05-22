@@ -15,12 +15,14 @@ exports.sendMsg = async(req,res,next)=>{
     const t = await sequelize.transaction()
     try{
         const msg = req.body.msg;
+        const groupId = req.body.groupId
         const user = req.user
         // creating a new nessage
         await Message.create({
             message : msg,
             userId : user.id,
             username : user.name,
+            groupId : groupId,
         },
         {
             transaction : t,
@@ -49,7 +51,8 @@ exports.getNewMsg = async(req,res,next)=>{
             where : {
                 id : {
                     [Op.gt] : +req.query.lastMsgId
-                }
+                },
+                groupId : req.query.groupId,
             },
             transaction : t
         })

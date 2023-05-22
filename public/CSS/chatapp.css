@@ -7,6 +7,45 @@ body{
 header{
     margin-bottom: 1em;
     padding: 0;
+    background-color: #25d366;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.createGroupBtn{
+    margin: 1vw;
+    padding: 5px 11px 5px 11px;
+    border-radius: 9px;
+}
+
+.createGroupForm{
+    position:absolute;
+    background-color: #25d366;
+    padding: 1em;
+    border-radius: 0 0 2em 0;
+}
+
+.createGroupInput{
+    padding: 7px;
+    border-radius: 14px;
+    width: 90%;
+    margin: 0 0 10px 0px;
+}
+
+.createGroupForm button{
+    margin: 0 0 0 6px;
+    padding: 3px 10px 3px 10px;
+    border-radius: 8px;
 }
 
 .heading{
@@ -14,7 +53,7 @@ header{
     text-align: center;
     padding: 18px;
     margin: 0;
-    background-color: #25D366;
+    width: 75vw;
 }
 
 .success{
@@ -25,16 +64,89 @@ header{
     color: red;
 }
 
+.flex{
+    display: flex;
+}
+
+.groupDiv{
+    min-width: 25vw;
+}
+
+.groupDiv h4 {
+    text-align: center;
+}
+
+.groupUl{
+    list-style-type: none;
+    background-color: beige;
+    margin: 1em;
+    border-radius: 1em;
+    padding: 1em;
+    min-height: 70vh;
+}
+
+.groupLi{
+    background-color: #e1e1cd;
+    border-radius: 15px;
+}
+
+.groupLi :hover{
+    background-color: #50f0b5;
+    border-radius: 15px;
+}
+
+.groupLi h3{
+    padding: 15px;
+}
+
+.groupInfo{
+    padding: 0 60px 0px 39px;
+}
+
+.addMemberBtn{
+    padding: 6px 10px 6px 10px;
+    border-radius: 8px;
+}
+
+.addMemberForm{
+    position: absolute;
+    padding: 1em;
+    background-color: rgb(196, 196, 185);
+    border-radius: 0px 20px 20px;
+}
+
+.addMemberInput{
+    padding: 7px;
+    border-radius: 14px;
+    width: 90%;
+    margin: 0 0 10px 0px;
+}
+
+.addMemberForm button{
+    margin: 0 0 0 6px;
+    padding: 3px 10px 3px 10px;
+    border-radius: 8px;
+}
+
+
+
 .chatUl{
     list-style-type: none;
     width: 60vw;
 }
 
-.chatLi{
+/* .chatLi{
     border-radius: 0.6em;
     padding: 0.3em;
     margin-top: 0.6em;
     background-color: rgb(230, 230, 230);
+} */
+
+.messageClass{
+    background-color: #eee;
+    padding: 5px 8px 5px 8px;
+    border-radius: 8px;
+    width: fit-content;
 }
 
 footer{
