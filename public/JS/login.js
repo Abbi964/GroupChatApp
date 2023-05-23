@@ -21,7 +21,7 @@ async function submitForm (e){
                 password : password.value,
             }
             // making a post request 
-            let response = await axios.post('http://localhost:3000/user/login',obj);
+            let response = await axios.post('http://16.171.1.47:3000/user/login',obj);
             // alerting the msg recieved
             window.alert(response.data.msg)
             // logging in the user

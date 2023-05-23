@@ -31,7 +31,7 @@ async function submitForm (e){
                 phoneNo : phoneNo.value
             }
             // psting the obj to database
-            let response = await axios.post('http://localhost:3000/user/signup',obj);
+            let response = await axios.post('http://16.171.1.47:3000/user/signup',obj);
             if(response.data === false){
                 signUpInfo.innerHTML = '<p>User already exists, Please Login</p>'
             }
