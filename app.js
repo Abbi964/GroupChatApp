@@ -3,6 +3,8 @@ require('dotenv').config();
 const path = require('path')
 const fs = require('fs')
 
+const cors = require('cors')
+
 const bodyParser = require('body-parser')
 
 const express = require('express')
@@ -15,6 +17,9 @@ const User = require('./model/user');
 const Message = require('./model/message');
 const Group = require('./model/group');
 const GroupUser = require('./model/groupUser');
+
+// Enable CORS for all routes
+app.use(cors());
 
 //adding routes
 const userRoutes = require('./routes/user');
