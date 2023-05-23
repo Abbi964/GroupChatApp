@@ -53,7 +53,11 @@ nav ul {
     text-align: center;
     padding: 18px;
     margin: 0;
-    width: 75vw;
+    width: 70vw;
+}
+
+.userInfo{
+    display: block;
 }
 
 .success{
@@ -103,15 +107,16 @@ nav ul {
     padding: 0 60px 0px 39px;
 }
 
-.addMemberBtn{
+.addMemberBtn, .showMemberBtn{
     padding: 6px 10px 6px 10px;
     border-radius: 8px;
+    margin: 0 3em 0px 0px;
 }
 
 .addMemberForm{
     position: absolute;
     padding: 1em;
-    background-color: rgb(196, 196, 185);
+    background-color: rgb(213, 213, 203);
     border-radius: 0px 20px 20px;
 }
 
@@ -128,6 +133,50 @@ nav ul {
     border-radius: 8px;
 }
 
+.memberList{
+    display: block;
+    position: absolute;
+    background-color: #d5d5cb;
+    padding: 1em;
+    border-radius: 10px 10px 20px 20px;
+    width: 17vw;
+}
+.memberList p {
+    margin: 0;
+}
+
+.memberListLi{
+    padding: 4px 0 4px 0px;
+}
+
+.adminBtnClass{
+    position: absolute;
+    right: 29%;
+    background-color: #9df47e;
+    border-radius: 10px;
+}
+.makeAdminBtnClass{
+    position: absolute;
+    right: 29%;
+    background-color: #f4dc7e;
+    border-radius: 10px;
+}
+.adminBtnClass:hover{
+    background-color: #70d74b;
+}
+.makeAdminBtnClass:hover{
+    background-color: #d3b951;
+}
+
+.removeBtnClass{
+    position: absolute;
+    right: 5px;
+    background-color: #f47e7e;
+    border-radius: 10px;
+}
+.removeBtnClass:hover{
+    background-color: #d64848;
+}
 
 
 .chatUl{

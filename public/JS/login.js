@@ -28,6 +28,9 @@ async function submitForm (e){
             if(response.data.success){
                 // saving JWT in local storage
                 localStorage.setItem('token',response.data.token)
+                // saving username and email in localstorage
+                localStorage.setItem('username',response.data.username);
+                localStorage.setItem('email',response.data.email);
                 // redirecting to main page
                 window.location.href = "/chatapp/main"
             }
