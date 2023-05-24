@@ -16,6 +16,9 @@ const emailLi = document.getElementById('emailLi');
 
 msgForm.addEventListener('submit',sendMessage);
 
+// for socket IO
+const socket = io();
+
 // showing username and email on top right
 usernameLi.innerText = `User :: ${localStorage.getItem('username')}`
 emailLi.innerText = `Email :: ${localStorage.getItem('email')}`
@@ -30,6 +33,10 @@ async function sendMessage (e){
         try{
             let token = localStorage.getItem('token');
             let groupId = localStorage.getItem('groupId')
+
+            //sending msg through socket
+            socket.emit('sendMsg',{msg : msgInput.value, username :localStorage.getItem('username'),time : new Date(),groupIdgroupId})
+
             // making an obj with msg
             let obj = {msg : msgInput.value , groupId : groupId};
             // posting this msg
@@ -37,8 +44,8 @@ async function sendMessage (e){
             console.log(response)
             // displaying message on screen
             if(response.data.success){
-                promptDiv.innerHTML = '<p class="success">Message Sent</p>'
-                setTimeout(()=>promptDiv.innerHTML = '',1000)
+                // promptDiv.innerHTML = '<p class="success">Message Sent</p>'
+                // setTimeout(()=>promptDiv.innerHTML = '',1000)
                 // clearing input
                 msgInput.value = ''
             }
@@ -112,13 +119,13 @@ async function loadMsg(e){
 }
 
 
-//--------------------- continuously pulling messages----------------//
-setInterval(()=>{
-    // first clearing the chat Ul
-    chatUl.innerHTML = ''
-    // now getting all the messages from DB
-    loadMsg()
-},8000)
+// //--------------------- continuously pulling messages----------------//
+// setInterval(()=>{
+//     // first clearing the chat Ul
+//     chatUl.innerHTML = ''
+//     // now getting all the messages from DB
+//     loadMsg()
+// },8000)
 
 
 //------------------handling create group btn------------------------//
@@ -362,9 +369,17 @@ function selectGroup(e){
     if(e.target.parentElement.className === 'groupLi'){
         // getting group id
         let groupId = e.target.parentElement.id;
+
+        //leaving current room (socket IO) if any
+        if(localStorage.getItem('groupId')){
+            socket.emit('leaveRoom',localStorage.getItem('groupId'))
+        }
         
         // saving groupId in local storage
         localStorage.setItem('groupId',groupId);
+
+        // joining socket to a room (named after group)for socket IO
+        socket.emit('joinRoom',groupId)
 
         // closing 'addmember' and 'member list' dropdowns
         memberList.style.display = 'none';
@@ -440,3 +455,9 @@ function makeAdminOrIsAdminBtn(member){
 }
 
 
+// showing msg which came by socket
+socket.on('message', (msgObj)=>{
+    let li = makeLi(msgObj.username,msgObj.msg,msgObj.time);
+    chatUl.appendChild(li)
+
+})
