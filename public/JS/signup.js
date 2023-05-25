@@ -56,5 +56,5 @@ async function submitForm (e){
 const socket = io()
 
 socket.on('connect',()=>{
-    console.log("Connected to server with socket id :",socket.id);
+    console.log("Connected to server");
 })

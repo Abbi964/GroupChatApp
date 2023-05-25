@@ -8,6 +8,8 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const app = express();
 
+const cors = require('cors')
+
 //Attaching http server to socket IO
 const { createServer } = require('http');
 const { Server } = require('socket.io');
@@ -18,6 +20,9 @@ const io = new Server(httpServer,{
         origin : ['*']
     }
 })
+
+// using cors
+app.use(cors());
 
 const sequelize = require('./util/database')
 
