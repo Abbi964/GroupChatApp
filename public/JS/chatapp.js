@@ -35,7 +35,7 @@ async function sendMessage (e){
             let groupId = localStorage.getItem('groupId')
 
             //sending msg through socket
-            socket.emit('sendMsg',{msg : msgInput.value, username :localStorage.getItem('username'),time : new Date(),groupIdgroupId})
+            socket.emit('sendMsg',{msg : msgInput.value, username :localStorage.getItem('username'),time : new Date(),groupId :groupId})
 
             // making an obj with msg
             let obj = {msg : msgInput.value , groupId : groupId};
