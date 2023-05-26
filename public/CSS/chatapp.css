@@ -222,6 +222,9 @@ footer{
 }
 
 #sendBtn{
-    padding: 4px;   
-    width: 10%;
+    padding: 3px 10px 3px 10px;
+}
+
+.sendImgForm{
+    padding: 0 15px 0px 0px
 }

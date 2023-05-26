@@ -64,20 +64,20 @@ exports.postLoginPage = async(req,res,next)=>{
         await t.commit()
         // checking if user exists
         if(user === null){
-            res.status(404).json({msg : 'User not found', success : false})
+            res.json({msg : 'User not found', success : false})
         }
         else{
             // checking if password matches
             bcrypt.compare(password,user.password,(err,same)=>{
                 if(err){
                     console.log(err);
-                    res.status(500).json({msg : "Internal server error", success : false})
+                    res.json({msg : "Internal server error", success : false})
                 }
                 else if(same){
                     res.status(201).json({msg : 'Log in Sucessful', token : generateJWT(user),username : user.name ,email : user.email, success : true})
                 }
                 else{
-                    res.status(401).json({msg : 'User not authorized', success : false})
+                    res.json({msg : 'User not authorized', success : false})
                 }
             })
         }

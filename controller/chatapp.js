@@ -6,6 +6,7 @@ const Message = require('../model/message');
 const sequelize = require('../util/database');
 const { Op } = require('sequelize');
 const { json } = require('body-parser');
+const s3Service = require('../services/s3')
 
 exports.getMainPage = (req,res,next)=>{
     res.sendFile(path.join(__dirname,'..','views','chatApp.html'))
@@ -17,7 +18,7 @@ exports.sendMsg = async(req,res,next)=>{
         const msg = req.body.msg;
         const groupId = req.body.groupId
         const user = req.user
-        // creating a new nessage
+        // creating a new message
         await Message.create({
             message : msg,
             userId : user.id,
@@ -36,6 +37,29 @@ exports.sendMsg = async(req,res,next)=>{
         console.log(err)
         res.json({msg : 'Something went Wrong', success : false})
     }
+}
+
+exports.upload = async(req,res,next)=>{
+    try{
+        const user = req.user;
+        // const groupId = req.body.groupId
+        const uploadedFile = req.file   // this is due to use of 'multer'
+        // due to multer, file recieved is in original form and not a raw file data
+        let filename = `IMG-${user.id}/${new Date}.jpg`
+        let fileurl = await s3Service.uploadToS3(uploadedFile,filename)
+        if(fileurl){
+            // sending fileurl back to frontend
+            res.json({fileurl : fileurl,filename : filename, success : true})
+        }
+        else{
+            res.json({msg : "something went wrong",success : false})
+        }
+    }
+    catch(err){
+        console.log(err);
+        res.json({msg : 'Something went wrong', success : false});
+    }
+
 }
 
 
