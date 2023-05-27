@@ -45,7 +45,7 @@ exports.upload = async(req,res,next)=>{
         // const groupId = req.body.groupId
         const uploadedFile = req.file   // this is due to use of 'multer'
         // due to multer, file recieved is in original form and not a raw file data
-        let filename = `IMG-${user.id}/${new Date}.jpg`
+        let filename = `IMG-${uploadedFile.originalname} - ${user.id}.jpg`
         let fileurl = await s3Service.uploadToS3(uploadedFile,filename)
         if(fileurl){
             // sending fileurl back to frontend

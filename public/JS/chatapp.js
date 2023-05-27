@@ -426,7 +426,8 @@ async function sendFile (e){
                 // posting this msg
                 let response = await axios.post('http://localhost:3000/chatapp/sendMsg',    obj,{ headers:{ 'Authorization': token }});
 
-
+                // clearing file input
+                fileInput.value = ''
             }
             else{
                 alert(result.data.msg)

@@ -10,7 +10,7 @@ exports.uploadToS3 = (data,filename)=>{
             secretAccessKey : process.env.AWS_USER_SECRET,
         })
 
-        // we have to upload buffer to aws so I am using readFile to read the image data  
+        // we have to upload buffer to aws so I am using readFile to read the image data   
         const fileData = fs.readFileSync(path.join(__dirname,'..',data.path))
 
         // making an object to upload to bucket
@@ -29,7 +29,15 @@ exports.uploadToS3 = (data,filename)=>{
             }
             else{
                 console.log('file uploaded ')
-                resolve(s3Response.Location)
+                // now deleting that file from local storage
+                fs.unlink(path.join(__dirname,'..',data.path),(err)=>{
+                    if(err){
+                        console.log('Some eror occurd during deleting file')
+                    }
+                    else{
+                        resolve(s3Response.Location)
+                    }
+                })
             }
         })
     })
