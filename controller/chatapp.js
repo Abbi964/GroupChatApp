@@ -5,7 +5,6 @@ const User = require('../model/user');
 const Message = require('../model/message');
 const sequelize = require('../util/database');
 const { Op } = require('sequelize');
-const { json } = require('body-parser');
 const s3Service = require('../services/s3')
 
 exports.getMainPage = (req,res,next)=>{

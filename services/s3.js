@@ -29,10 +29,11 @@ exports.uploadToS3 = (data,filename)=>{
             }
             else{
                 console.log('file uploaded ')
-                // now deleting that file from local storage
+                // now deleting that file from this server
                 fs.unlink(path.join(__dirname,'..',data.path),(err)=>{
                     if(err){
-                        console.log('Some eror occurd during deleting file')
+                        console.log('Some eror occurd during deleting file');
+                        resolve(s3Response.Location)
                     }
                     else{
                         resolve(s3Response.Location)

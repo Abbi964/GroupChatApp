@@ -8,6 +8,8 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const app = express();
 
+const CronJob = require('cron').CronJob;  // for scheduling a tast 
+
 //Attaching http server to socket IO
 const { createServer } = require('http');
 const { Server } = require('socket.io');
@@ -20,6 +22,7 @@ const io = new Server(httpServer,{
 })
 
 const sequelize = require('./util/database')
+const dataMigration = require('./services/dataMigration')
 
 // importing models
 const User = require('./model/user');
@@ -77,6 +80,14 @@ io.on('connection',(socket)=>{
 })
 
 
+// using cron to schedule  msg transfer (from message table to backupMsg table) every night at 1AM 
+let job = new CronJob(
+    '0 1 * * *',
+    dataMigration.migrateData(),
+    null,
+    true,
+    'Asia/Kolkata'
+)
 
 
 // starting server on port 3000
